@@ -1,7 +1,8 @@
 public class Caesar { 
 
     public static void main(String[] arg){ 
-        String Cadena        = "Todo lo que se preguntaba eran las mismas respuestas que buscamos el resto de nosotros. ¿De dónde vengo? ¿A dónde voy? ¿Cuánto tiempo tengo? Todo lo que pude hacer fue sentarme y ver como moría."; 
+
+        String Cadena        = "Esta es una cadena de prueba"; 
         String CadenaCifrada = ""; 
         int Desplazamiento   = 3; 
 
@@ -9,43 +10,23 @@ public class Caesar {
 		
         CadenaCifrada = cifrar(Cadena, Desplazamiento); 
         System.out.println(CadenaCifrada); 
-        // descifrar(CadenaCifrada, Desplazamiento);
     } 
 
+    private static String cifrar(String Cadena, int Desplazamiento){ 
+        String alfabetoMinusculas = "abcdefghijklmnñopqrstuvwxyz";
+        String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
+        String rtnCadena = ""; 
 
-    public static String cifrar(String Cadena, int Desplazamiento){ 
-        int VInt        = 0; 
-        String CCifrado = ""; 
-
-        for (int i=0; i<Cadena.length();i++){ 
-            if( (Cadena.codePointAt(i)>=65 && Cadena.codePointAt(i)<=90) 
-			    || (Cadena.codePointAt(i)>=97 && Cadena.codePointAt(i)<=122) ){ 
-                VInt= Cadena.codePointAt(i) + Desplazamiento;             
-                CCifrado = CCifrado + new Character((char) VInt).toString(); 
-            }else{ 
-                CCifrado=CCifrado+ Cadena.charAt(i); 
-            } 
+        for(int i=0; i<Cadena.length(); i++){ 
+            if( (alfabetoMinusculas.indexOf(Cadena.charAt(i)) != -1) || (alfabetoMayusculas.indexOf(Cadena.charAt(i)) != -1) ) 
+                rtnCadena += (alfabetoMinusculas.indexOf(Cadena.charAt(i)) != -1) 
+                            ? alfabetoMinusculas.charAt(  ( alfabetoMinusculas.indexOf(Cadena.charAt(i)) +Desplazamiento)%alfabetoMinusculas.length() ) 
+                            : alfabetoMayusculas.charAt(  ( alfabetoMayusculas.indexOf(Cadena.charAt(i)) +Desplazamiento)%alfabetoMayusculas.length() ); 
+            else 
+                rtnCadena += Cadena.charAt(i); 
         } 
 
-        return CCifrado; 
-    } 
-
-	/*
-    public static void descifrar(String Cadena, int Desplazamiento){ 
-        int VInt=0; 
-        String DCifrado=""; 
-
-        for (int i=0; i<Cadena.length();i++){ 
-            if((Cadena.codePointAt(i)>=65 && Cadena.codePointAt(i)<=90) || (Cadena.codePointAt(i)>=97 && Cadena.codePointAt(i)<=122) ){ 
-                VInt= Cadena.codePointAt(i) - Desplazamiento;             
-                DCifrado = DCifrado + new Character((char) VInt).toString(); 
-            }else{ 
-                DCifrado=DCifrado+ Cadena.charAt(i); 
-            } 
-        } 
-
-        System.out.println(DCifrado); 
-    } 
-	*/
+        return rtnCadena;
+    }
 
 } 
