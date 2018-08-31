@@ -2,14 +2,13 @@ import java.io.BufferedReader;
 import java.io.IOException; 
 import java.io.InputStreamReader;
 import java.lang.*;
-
-import com.sun.xml.internal.org.jvnet.fastinfoset.sax.PrimitiveTypeContentHandler;
+// import com.sun.xml.internal.org.jvnet.fastinfoset.sax.PrimitiveTypeContentHandler;
 
 public class Caesar { 
 
     static String alfabetoMinusculas = "abcdefghijklmnñopqrstuvwxyz"; 
     static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
-    static BufferedReader bf         = new BufferedReader(new InputStreamReader(System.in));
+    // static BufferedReader bf         = new BufferedReader(new InputStreamReader(System.in));
 
     /**
      * E(x) = x+n (mod N)
@@ -19,16 +18,30 @@ public class Caesar {
 
         for(int i=0; i<cadena.length(); i++){
 
-            if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) || 
+            if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) ||
                  alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ) {
-                // Ejemplo con dezplacamiento = 3
-                // abcdefghijklmnñopqrstuvwxyz
-                // defghijklmnñopqrstuvwxyzabc
-                rtnCadena += alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) 
-                            //                    E(x) =                        x                      +        n             (mod N)
-                            ? alfabetoMinusculas.charAt(  alfabetoMinusculas.indexOf(cadena.charAt(i)) + desplazamiento % alfabetoMinusculas.length() )
-                            //                    E(x) =                        x                      +        n             (mod N)
-                            : alfabetoMayusculas.charAt(  alfabetoMayusculas.indexOf(cadena.charAt(i)) + desplazamiento % alfabetoMayusculas.length() );
+                
+                char cipherChar;
+
+                if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) ) {
+
+                    int x  = alfabetoMinusculas.indexOf(cadena.charAt(i));
+                    // E(x)=  x +        n             (mod N)
+                    int Ex = (x + desplazamiento) % alfabetoMinusculas.length();
+                    
+                    cipherChar = alfabetoMinusculas.charAt(Ex);
+                    
+                }else{
+
+                    int x  = alfabetoMayusculas.indexOf(cadena.charAt(i));
+                    // E(x)=  x +        n             (mod N)
+                    int Ex = (x + desplazamiento) % alfabetoMayusculas.length();
+                    
+                    cipherChar = alfabetoMayusculas.charAt(Ex);
+                }
+
+                rtnCadena += cipherChar; 
+
             }else{
                 rtnCadena += cadena.charAt(i); 
             }
@@ -38,11 +51,12 @@ public class Caesar {
         return rtnCadena;
     }
 
-
-
+    /**
+     * Método main
+     */
     public static void main(String[] arg){ 
-        String cadena           = "WIKIPEDIA";
-        int desplazamiento      = 6;
+        String cadena           = "Esta es una cadena de pureba.";
+        int desplazamiento      = 3;
         String cadenaCodificada = ""; 
         // 1.
 		System.out.println("Texto original:   " + cadena);
