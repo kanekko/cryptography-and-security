@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.*;
 
+import com.sun.xml.internal.org.jvnet.fastinfoset.sax.PrimitiveTypeContentHandler;
+
 public class Caesar { 
 
     static String alfabetoMinusculas = "abcdefghijklmnñopqrstuvwxyz"; 
@@ -10,32 +12,26 @@ public class Caesar {
     static BufferedReader bf         = new BufferedReader(new InputStreamReader(System.in));
 
     /**
-     * E(x) = x+n (mod 27)
+     * E(x) = x+n (mod N)
      */
     private static String codificar(String cadena, int desplazamiento){
         String rtnCadena = ""; 
 
-        for(int i=0; i<cadena.length(); i++){ 
+        for(int i=0; i<cadena.length(); i++){
 
-            CharSequence caPattern = cadena.charAt(i);
-            
-            if( (alfabetoMinusculas.indexOf(cadena.charAt(i)) != -1) || 
-                (alfabetoMayusculas.indexOf(cadena.charAt(i)) != -1) ) {
-//https://www.geeksforgeeks.org/searching-for-character-and-substring-in-a-string/
-
+            if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) || 
+                 alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ) {
+                // Ejemplo con dezplacamiento = 3
+                // abcdefghijklmnñopqrstuvwxyz
+                // defghijklmnñopqrstuvwxyzabc
+                rtnCadena += alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) 
+                            //                    E(x) =                        x                      +        n             (mod N)
+                            ? alfabetoMinusculas.charAt(  alfabetoMinusculas.indexOf(cadena.charAt(i)) + desplazamiento % alfabetoMinusculas.length() )
+                            //                    E(x) =                        x                      +        n             (mod N)
+                            : alfabetoMayusculas.charAt(  alfabetoMayusculas.indexOf(cadena.charAt(i)) + desplazamiento % alfabetoMayusculas.length() );
+            }else{
+                rtnCadena += cadena.charAt(i); 
             }
-
-            /*
-            if( (alfabetoMinusculas.indexOf(cadena.charAt(i)) != -1) || 
-                (alfabetoMayusculas.indexOf(cadena.charAt(i)) != -1) ) {
-                // rtnCadena += (alfabetoMinusculas.indexOf(cadena.charAt(i)) != -1) 
-                //             ? alfabetoMinusculas.charAt(  ( alfabetoMinusculas.indexOf(cadena.charAt(i)) +Desplazamiento)%alfabetoMinusculas.length() ) 
-                //             : alfabetoMayusculas.charAt(  ( alfabetoMayusculas.indexOf(cadena.charAt(i)) +Desplazamiento)%alfabetoMayusculas.length() ); 
-            }                            
-            else{
-            //     rtnCadena += cadena.charAt(i); 
-            }
-            */
 
         } 
 
@@ -45,13 +41,12 @@ public class Caesar {
 
 
     public static void main(String[] arg){ 
-
-        String cadena           = "Esta es una cadena de prueba";
-        int desplazamiento      = 3;
+        String cadena           = "WIKIPEDIA";
+        int desplazamiento      = 6;
         String cadenaCodificada = ""; 
-
+        // 1.
 		System.out.println("Texto original:   " + cadena);
-		
+		// 2.
         cadenaCodificada = codificar(cadena, desplazamiento); 
         System.out.println("Texto codificado: " + cadenaCodificada); 
     } 
