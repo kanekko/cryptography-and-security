@@ -16,6 +16,8 @@ public class Affine {
                 int Ex = ((a*x) + b) % alfabetoMayusculas.length();
                 char cipherChar = alfabetoMayusculas.charAt(Ex);
                 rtnCadena += cipherChar; 
+            }else{
+                rtnCadena += cadena.charAt(i); 
             }
             // char singleCharacter = cadena.charAt(i);
             // if (Character.isLetter(singleCharacter)) { //filtro, solo letras
@@ -34,7 +36,7 @@ public class Affine {
      * 
      */
     public static void main(String[] args) {
-        String cadena = "TARINGA";
+        String cadena = "ESTA ES UNA CADENA DE PRUEBA";
         int a = 17;
         int b = 5;
 
