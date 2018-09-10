@@ -8,7 +8,7 @@ public class Vigenere {
     private static String codificar(String cadena, String llave) {
         String rtnCadena = "";
 
-        for (int i=0, j=0; i<cadena.length(); i++, j=j%cadena.length()) {
+        for (int i=0, j=0, l=cadena.length(); i<l; i++, j=j%l) {
             if( alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ){
                 int Xi = alfabetoMayusculas.indexOf(cadena.charAt(i));
                 int Ki = alfabetoMayusculas.indexOf(llave.charAt(j));
@@ -26,11 +26,48 @@ public class Vigenere {
     }
 
     /**
+     * D(x) = (Ci + Ki) mod L
+     */
+    private static String decodificar(String cadena, String llave) {
+        String rtnCadena = "";
+
+        for (int i=0, j=0, l=cadena.length(); i<l; i++, j=j%l) {
+            if( alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ){
+
+                int Ci = alfabetoMayusculas.indexOf(cadena.charAt(i));
+                int Ki = alfabetoMayusculas.indexOf(llave.charAt(j));
+                int Dx = 0;
+                
+                if( (Ci-Ki)>=0 ){
+                    // D(x)= ( Ci - Ki ) mod L
+                    Dx = ( Ci - Ki ) % alfabetoMayusculas.length();
+                }else{
+                    // D(x)= ( Ci - Ki + L ) mod L
+                    Dx = ( Ci - Ki + l ) % alfabetoMayusculas.length();
+                }
+
+                char cipherChar = alfabetoMayusculas.charAt(Dx);
+
+                rtnCadena += cipherChar; 
+
+
+            }else{
+                rtnCadena += cadena.charAt(i); 
+            }
+        }
+
+        return rtnCadena;
+    }
+
+
+    /**
      * Método principal
      */
     public static void main(String[] args) {
-        String mensaje = "PER ASPERA AD ASTRA";
-        String llave   = "VIGENERE";
+        // String mensaje = "PER ASPERA AD ASTRA";
+        // String llave   = "VIGENERE";
+        String mensaje = "ATTACKATDAWN";
+        String llave   = "LEMON";
 
         // 1. Texto original
 		System.out.println("Texto original:     " + mensaje);
@@ -40,8 +77,8 @@ public class Vigenere {
         String mensajeCodificado = codificar(mensaje, llave); 
         System.out.println("Texto codificado:   " + mensajeCodificado); 
         // 3. Decodificar
-        // String cadenaDecodificada = decodificar(cadenaCodificada, a, b); 
-        // System.out.println("Texto decodificado: " + cadenaDecodificada); 
+        String cadenaDecodificada = decodificar(mensajeCodificado, llave); 
+        System.out.println("Texto decodificado: " + cadenaDecodificada); 
     }
 
 }
