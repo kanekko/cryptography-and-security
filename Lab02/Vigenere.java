@@ -8,11 +8,10 @@ public class Vigenere {
     private static String codificar(String cadena, String llave) {
         String rtnCadena = "";
 
-        for (int i=0; i<cadena.length(); i++) {
+        for (int i=0, j=0; i<cadena.length(); i++, j=j%cadena.length()) {
             if( alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ){
                 int Xi = alfabetoMayusculas.indexOf(cadena.charAt(i));
-                int Ki = alfabetoMayusculas.indexOf(llave.charAt(i));
-
+                int Ki = alfabetoMayusculas.indexOf(llave.charAt(j));
                 // E(x)= ( Xi + Ki ) mod L
                 int Ex = ( Xi + Ki ) % alfabetoMayusculas.length();
                 char cipherChar = alfabetoMayusculas.charAt(Ex);
