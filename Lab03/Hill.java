@@ -1,3 +1,6 @@
+import java.math.*;
+
+
 public class Hill {
 
     static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
@@ -21,11 +24,25 @@ public class Hill {
     private static int[][] getMatrizClave(String clave){
         int[][] rtnClave = new int[0][0];
 
-        for(ini i=0; i<3;i++){
-            for(ini j=0; i<3;j++){
-                rtnClave[i][j] = alfabetoMayusculas.indexOf(cadena.charAt(i));
+
+        double raizDouble = Math.sqrt( clave.length() );
+        if (raizDouble == (int)raizDouble){
+
+            int raizInt = (int)raizDouble;
+            rtnClave = new int[raizInt][raizInt];
+            int flagClave = 0;
+            for(int i=0; i<raizInt; i++){
+                for(int j=0; j<raizInt; j++){
+                    rtnClave[i][j] = alfabetoMayusculas.indexOf(clave.charAt(flagClave));
+                    flagClave++;
+                }
             }
+
         }
+        else{ //no es exacto la raíz cuadrada del la clave
+            System.out.println("Llave invalida, no se puede formar una matriz de NxN");
+        }
+
 
         return rtnClave;
     }
