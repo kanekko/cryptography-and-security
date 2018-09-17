@@ -11,19 +11,23 @@ public class Hill {
     private static String codificar(String clave, String mensaje) {
         String rtnCadena = "";
 
-        //1. Verificar la longitud de la clave
+        //1. Construcción y verificación de la Matriz correspondiente a la clave
         int[][] claveMatriz = getMatrizClave(clave);
 
+        //2. Construcción de n-gramas del mensaje
+        int[][] claveMensaje = getMatrizMensaje(mensaje, claveMatriz[0].length);
 
-        //2. 
 
         return rtnCadena;
     }
 
-
+    /**
+     * 
+     * @param clave
+     * @return
+     */
     private static int[][] getMatrizClave(String clave){
         int[][] rtnClave = new int[0][0];
-
 
         double raizDouble = Math.sqrt( clave.length() );
         if (raizDouble == (int)raizDouble){
@@ -41,12 +45,38 @@ public class Hill {
         }
         else{ //no es exacto la raíz cuadrada del la clave
             System.out.println("Llave invalida, no se puede formar una matriz de NxN");
+            // rtnClave[i][j] = null;
         }
-
 
         return rtnClave;
     }
 
+    /**
+     * 
+     * @param mensaje
+     * @return
+     */
+    private static int[][] getMatrizMensaje(String mensaje, int longitudeMatriz){
+        int[][] rtnMensaje = new int[0][0];
+
+        if( mensaje.length()%longitudeMatriz == 0 ){
+            int column = mensaje.length() / longitudeMatriz;
+            rtnMensaje = new int[column][longitudeMatriz];
+
+            int flagMesaje = 0;
+            for(int i=0; i<column; i++){
+                for(int j=0; j<longitudeMatriz; j++){
+                    rtnMensaje[i][j] = alfabetoMayusculas.indexOf(mensaje.charAt(flagMesaje));
+                    flagMesaje++;
+                }
+            }
+
+        }else{
+            System.out.println("Mensaje invalido, no se puede formar una matrices de Nx1");
+        }
+
+        return rtnMensaje;
+    }
 
     /**
      * 
@@ -73,7 +103,7 @@ public class Hill {
 
         // 2. Codificar
         String mensajeCodificado = codificar(clave, mensaje);
-        System.out.println("Mensaje codificado:   " + mensajeCodificado); 
+        System.out.println("Mensaje codificado:   " + mensajeCodificado);
 
         // 3. Decodificar
         // String cadenaDecodificada = decodificar(mensaje, matriz, 2); 
