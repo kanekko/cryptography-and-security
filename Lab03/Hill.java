@@ -1,6 +1,5 @@
 import java.math.*;
 
-
 public class Hill {
 
     static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
@@ -15,8 +14,12 @@ public class Hill {
         int[][] claveMatriz = getMatrizClave(clave);
 
         //2. Construcción de n-gramas del mensaje
-        int[][] claveMensaje = getMatrizMensaje(mensaje, claveMatriz[0].length);
+        int[][] mensajeMatriz = getMatrizMensaje(mensaje, claveMatriz[0].length);
 
+        //3. Multiplicamos Matrices 
+        int [][] claveXmensaje = multiplicaMatrices(claveMatriz, mensajeMatriz);
+
+        //4. Recuperamos mensaje ofuscado
 
         return rtnCadena;
     }
@@ -52,7 +55,7 @@ public class Hill {
     }
 
     /**
-     * 
+     * Se tiene que ver inversa esta matriz
      * @param mensaje
      * @return
      */
@@ -77,6 +80,28 @@ public class Hill {
 
         return rtnMensaje;
     }
+
+    /**
+     * 
+     */
+    private static int[][] multiplicaMatrices(int[][] clave, int[][] mensaje){
+        int[][] rtnMultiplicacion = new int[3][3];
+
+        // for(int i=0; i<mensaje.length; i++){
+
+            for(int x=0; x<clave[x].length; x++){
+                for(int y=0; y<clave[x].length; y++){
+                    // rtnMultiplicacion[x][y] = clave[x][y] * mensaje[i][y];
+                    System.out.print(clave[x][y]);
+                }
+            }
+
+        // }
+        
+        return rtnMultiplicacion;
+    }
+
+    
 
     /**
      * 
