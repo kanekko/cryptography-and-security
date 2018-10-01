@@ -14,17 +14,28 @@ public class RSA {
  
 	//blocksize in byte
 	private Random r;
- 
+
 	public RSA() {
+		// 1. Dos números primos aleatorios.
 		r = new Random();
 		p = BigInteger.probablePrime(bitlength, r);
 		q = BigInteger.probablePrime(bitlength, r);
+
+		// 2. Se calcula n=p*q
 		N = p.multiply(q);
+		
+		// 3. Se calcula la función de Euler
+		// Phi(n) = (p-1)(q-1)
 		phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+
+		// 4. Entero positivo 'e' menor que phi y que sea coprimo
 		e = BigInteger.probablePrime(bitlength/2, r);
+		
 		while (phi.gcd(e).compareTo(BigInteger.ONE) > 0 && e.compareTo(phi) < 0 ) {
 			e.add(BigInteger.ONE);
 		}
+
+		// 5. Se determina 'd' que satisfaga la congruencia e*d=1(mod Phi(n))
 		d = e.modInverse(phi);
 	}
  
@@ -34,23 +45,7 @@ public class RSA {
 		this.N = N;
 	}
  
-	public static void main (String[] args) throws IOException {
- 
-		RSA rsa = new RSA();
-		DataInputStream in=new DataInputStream(System.in);
-		String teststring ;
-		System.out.println("Enter the plain text:");
-		teststring="esta es una prueba";//in.readLine();
-		System.out.println("Encrypting String: " + teststring);
-		System.out.println("String in Bytes: " + bytesToString(teststring.getBytes()));
-		// encrypt
-		byte[] encrypted = rsa.encrypt(teststring.getBytes());
-		System.out.println("Encrypted String in Bytes: " + bytesToString(encrypted));
-		// decrypt
-		byte[] decrypted = rsa.decrypt(encrypted);
-		System.out.println("Decrypted String in Bytes: " +  bytesToString(decrypted));
-		System.out.println("Decrypted String: " + new String(decrypted));
-	}
+
  
 	private static String bytesToString(byte[] encrypted) {
 		String test = "";
@@ -71,4 +66,23 @@ public class RSA {
 		return (new BigInteger(message)).modPow(d, N).toByteArray();
 	}
  
+	public static void main (String[] args) throws IOException {
+ 
+		RSA rsa = new RSA();
+		// DataInputStream in=new DataInputStream(System.in);
+		String teststring ;
+		// System.out.println("Enter the plain text:");
+		teststring="esta es una prueba";//in.readLine();
+		System.out.println("Encrypting String: " + teststring);
+		System.out.println("String in Bytes: " + bytesToString( teststring.getBytes() )  );
+		// encrypt
+		byte[] encrypted = rsa.encrypt(teststring.getBytes());
+		System.out.println("Encrypted String in Bytes: " + bytesToString(encrypted));
+		// decrypt
+		// byte[] decrypted = rsa.decrypt(encrypted);
+		// System.out.println("Decrypted String in Bytes: " +  bytesToString(decrypted));
+		// System.out.println("Decrypted String: " + new String(decrypted));
+
+	}
+
 }
