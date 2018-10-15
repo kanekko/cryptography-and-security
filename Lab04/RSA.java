@@ -56,12 +56,20 @@ public class RSA {
 		return test;
 	}
  
-	//Encrypt message
+	/**
+	 * c = c.pow(d) mod n
+	 * @param message
+	 * @return
+	 */
 	public byte[] encrypt(byte[] message) {
 		return (new BigInteger(message)).modPow(e, N).toByteArray();
 	}
  
-	// Decrypt message
+	/**
+	 * m = c.pow(d) mod n
+	 * @param message
+	 * @return
+	 */
 	public byte[] decrypt(byte[] message) {
 		return (new BigInteger(message)).modPow(d, N).toByteArray();
 	}
@@ -79,10 +87,10 @@ public class RSA {
 		byte[] encrypted = rsa.encrypt(teststring.getBytes());
 		System.out.println("Encrypted String in Bytes: " + bytesToString(encrypted));
 		// decrypt
-		// byte[] decrypted = rsa.decrypt(encrypted);
-		// System.out.println("Decrypted String in Bytes: " +  bytesToString(decrypted));
-		// System.out.println("Decrypted String: " + new String(decrypted));
-
+		byte[] decrypted = rsa.decrypt(encrypted);
+		System.out.println("Decrypted String in Bytes: " +  bytesToString(decrypted));
+		System.out.println("Decrypted String: " + new String(decrypted));
+		
 	}
 
 }
