@@ -119,6 +119,9 @@ public class Rabin2 {
 
 
     public static void main(String[] args) {
+        int counter    = 0;
+        boolean worked =  false;
+
         BigInteger[] key = Rabin2.genKey(512);
         BigInteger N = key[0];
         BigInteger p = key[1];
@@ -126,12 +129,24 @@ public class Rabin2 {
         System.out.println(N);
         System.out.println(p + "," + q);
 
-        String s = "Hello world!";
+        String s = "Esta es una prueba";
         BigInteger m = new BigInteger(s.getBytes(Charset.forName("ascii")));
         BigInteger c = Rabin2.encrypt(m, N);
-        System.out.print("c:~>" + c);
+        System.out.println("c:~>" + c);
 
-        
+
+        BigInteger[] m2 = Rabin2.decrypt(c, p, q);
+        for (BigInteger b : m2) {
+            String dec = new String(b.toByteArray(), Charset.forName("ascii"));
+            System.out.println("M["+b+"]:~>" + dec);
+
+            if (dec.equals(s)) {
+                worked = true;
+            }
+        }
+        if (worked)
+            counter++;
+
     }
 
 }

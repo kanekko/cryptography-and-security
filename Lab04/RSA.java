@@ -77,15 +77,15 @@ public class RSA {
 	public static void main (String[] args) throws IOException {
  
 		RSA rsa = new RSA();
-		// DataInputStream in=new DataInputStream(System.in);
-		String teststring ;
-		// System.out.println("Enter the plain text:");
-		teststring="esta es una prueba";//in.readLine();
+
+		String teststring = "esta es una prueba";
 		System.out.println("Encrypting String: " + teststring);
 		System.out.println("String in Bytes: " + bytesToString( teststring.getBytes() )  );
+
 		// encrypt
 		byte[] encrypted = rsa.encrypt(teststring.getBytes());
 		System.out.println("Encrypted String in Bytes: " + bytesToString(encrypted));
+		
 		// decrypt
 		byte[] decrypted = rsa.decrypt(encrypted);
 		System.out.println("Decrypted String in Bytes: " +  bytesToString(decrypted));
