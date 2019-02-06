@@ -5,6 +5,7 @@ import java.lang.*;
 
 public class Caesar { 
 
+    // member varialbes
     static String alfabetoMinusculas = "abcdefghijklmnñopqrstuvwxyz"; 
     static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
 
@@ -20,16 +21,18 @@ public class Caesar {
                  alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ) {
                 
                 char cipherChar;
-
-                if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) ) {
+                
+                // Minus case
+                if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) ) { 
 
                     int x  = alfabetoMinusculas.indexOf(cadena.charAt(i));
                     // E(x)=  x +        n             (mod N)
                     int Ex = (x + desplazamiento) % alfabetoMinusculas.length();
                     
                     cipherChar = alfabetoMinusculas.charAt(Ex);
-                    
-                }else{
+
+                // Mayus case
+                }else{ 
 
                     int x  = alfabetoMayusculas.indexOf(cadena.charAt(i));
                     // E(x)=  x +        n             (mod N)
