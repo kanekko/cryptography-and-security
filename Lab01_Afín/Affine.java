@@ -1,4 +1,4 @@
-import java.math.*;
+//import java.math.*;
 
 public class Affine { 
 
@@ -43,7 +43,6 @@ public class Affine {
             if (flag == 1)
             {
                 a_inv = i;
-                // System.out.println(i);
             }
         }
 
@@ -54,8 +53,9 @@ public class Affine {
                 int x  = alfabetoMayusculas.indexOf(cadena.charAt(i));
                 // int aInverse = Math.pow(a,-1);
                 int modN = alfabetoMayusculas.length();
-				int Ex = ( ((a_inv)*(x-b+modN))%modN ); //% alfabetoMayusculas.length();
-                char cipherChar = alfabetoMayusculas.charAt(Ex);
+                //D(x) = (    a^-1  (x-  b) )  mod n
+				int Dx = ( ((a_inv)*(x-b+modN))%modN ); //% alfabetoMayusculas.length();
+                char cipherChar = alfabetoMayusculas.charAt(Dx);
                 rtnCadena += cipherChar; 
             }else{
                 rtnCadena += cadena.charAt(i); 
@@ -71,7 +71,7 @@ public class Affine {
     public static void main(String[] args) {
         String cadena = "AFFINE CIPHER";
         int a = 5;
-        int b = 8;
+        int b = 15;
 
         // 1. Texto original
 		System.out.println("Texto original:     " + cadena);
