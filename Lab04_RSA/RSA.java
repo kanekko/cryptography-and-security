@@ -10,7 +10,7 @@ public class RSA {
 	private BigInteger e;
 	private BigInteger d;
 	private int bitlength = 1024;
-	private int blocksize = 256;
+	//private int blocksize = 256;
  
 	//blocksize in byte
 	private Random r;
@@ -28,10 +28,10 @@ public class RSA {
 		// Phi(n) = (p-1)(q-1)
 		phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
 
-		// 4. Entero positivo 'e' menor que phi y que sea coprimo
+		// 4. Entero positivo 'e' menor que phi y que sea coprimo con phi
 		e = BigInteger.probablePrime(bitlength/2, r);
 		
-		while (phi.gcd(e).compareTo(BigInteger.ONE) > 0 && e.compareTo(phi) < 0 ) {
+		while ( phi.gcd(e).compareTo(BigInteger.ONE)>0 && e.compareTo(phi)<0 ) {
 			e.add(BigInteger.ONE);
 		}
 
