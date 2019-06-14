@@ -21,9 +21,9 @@ public final class ElGamal { // TODO extends Cryptosystem
      * @param n key size
      */
     public static List<List<BigInteger>> KeyGen(int n) {
-        // (a) take a random prime 'p' with getPrime() function. p = 2 * p' + 1 with prime(p') = true
+        // 1. take a random prime 'p' with getPrime() function. p = 2 * p' + 1 with prime(p') = true
         BigInteger p = getPrime(n, 40, new Random());
-        // (b) take a random element in [Z/Z[p]]* (p' order)
+        // 2. take a random element in [Z/Z[p]]* (p' order)
         BigInteger g = randNum(p, new Random());
         BigInteger pPrime = p.subtract(BigInteger.ONE).divide(ElGamal.TWO);
 
@@ -34,9 +34,9 @@ public final class ElGamal { // TODO extends Cryptosystem
                 g = randNum(p, new Random());
         }
 
-        // (c) take a random in [0, p' - 1]
+        // 3. take a random in [0, p' - 1]
         BigInteger a = randNum(pPrime.subtract(BigInteger.ONE), new Random());
-        // (d) calculate K = g^a (mod p)
+        // 4. calculate K = g^a (mod p)
         BigInteger K = g.modPow(a, p);
         // secret key is (p, a) and public key is (p, g, K)
         List<BigInteger> sk = new ArrayList<>(Arrays.asList(p, a));

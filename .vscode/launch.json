@@ -1,47 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
-        /*{
+        {
             "type": "java",
-            "name": "Lab00 - Caesar",
+            "name": "CodeLens (Launch) - Caesar",
             "request": "launch",
             "mainClass": "Caesar",
-            "projectName": "cryptography-and-security"
+            "projectName": "cryptography-and-security_ee7309e0"
         },
-        {
-            "type": "java",
-            "name": "Lab01 - Affine",
-            "request": "launch",
-            "mainClass": "Affine",
-            "projectName": "cryptography-and-security"
-        },
-        {
-            "type": "java",
-            "name": "Lab02 - Vigenere",
-            "request": "launch",
-            "mainClass": "Vigenere"
-        },
-        {
-            "type": "java",
-            "name": "Lab02 - Vigenere",
-            "request": "launch",
-            "mainClass": "Vigenere",
-            "projectName": "cryptography-and-security"
-        },
-        {
-            "type": "java",
-            "name": "Lab03 - Hill",
-            "request": "launch",
-            "mainClass": "Hill",
-            "projectName": "cryptography-and-security"
-        },
-        {
-            "type": "java",
-            "name": "Lab04 - RSA",
-            "request": "launch",
-            "mainClass": "RSA",
-            "projectName": "cryptography-and-security"
-        },*/
         {
             "type": "java",
             "name": "Debug (Launch)",
