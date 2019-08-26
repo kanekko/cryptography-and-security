@@ -5,19 +5,23 @@ import java.lang.*;
 
 public class Caesar { 
 
-    // member varialbes
-    static String alfabetoMinusculas = "abcdefghijklmnñopqrstuvwxyz"; //27 chars (spanish)
+    // Member varialbes
+    static String alfabetoMinusculas = "abcdefghijklmnñopqrstuvwxyz";
     static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
 
     /**
      * E(x) = x+n (mod N)
+     * 
+     * @param cadena         plain text
+     * @param desplazamiento total of displacements
+     * @return               string object with ciphertext
      */
     private static String codificar(String cadena, int desplazamiento){
         String rtnCadena = ""; 
 
         for(int i=0; i<cadena.length(); i++){
 
-            if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) ||
+            if ( alfabetoMinusculas.contains( String.valueOf(cadena.charAt(i)) ) || // Filtering characters 
                  alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ) {
                 
                 char cipherChar;
@@ -27,7 +31,7 @@ public class Caesar {
                     int x  = alfabetoMinusculas.indexOf(cadena.charAt(i));
                     // E(x)=  x +        n                   (mod N)
                     int Ex = (x + desplazamiento) % alfabetoMinusculas.length();
-                    
+                    // getting index of chipher char
                     cipherChar = alfabetoMinusculas.charAt(Ex);
                 
                 }else{ // Mayus case
@@ -39,7 +43,7 @@ public class Caesar {
                     cipherChar = alfabetoMayusculas.charAt(Ex);
                 }
 
-                rtnCadena += cipherChar; 
+                rtnCadena += cipherChar; // Union of all chars
 
             }else{
                 rtnCadena += cadena.charAt(i); 
@@ -52,6 +56,10 @@ public class Caesar {
 
     /**
      * D(x) = x-n (mod N)
+     * 
+     * @param cadena         ciphertext
+     * @param desplazamiento total of displacements
+     * @return               string object with plain text
      */
     private static String decodificar(String cadena, int desplazamiento){
         String rtnCadena = ""; 
@@ -91,13 +99,14 @@ public class Caesar {
         return rtnCadena;
     }
 
-
     /**
-     * Método main
+     * Main method
+     * 
+     * @param args arguments
      */
-    public static void main(String[] arg){ 
-        String cadena           = "Esta es una cadena de pureba.";
-        int desplazamiento      = 3;
+    public static void main(String[] args){ 
+        String cadena      = "Esta es una cadena de pureba.";
+        int desplazamiento = 3;
 
         String cadenaCodificada   = ""; 
         String cadenaDecodificada = ""; 
