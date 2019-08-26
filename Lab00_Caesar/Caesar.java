@@ -105,7 +105,7 @@ public class Caesar {
      * @param args arguments
      */
     public static void main(String[] args){ 
-        String cadena      = "Esta es una cadena de pureba.";
+        String cadena      = "Esta es una prueba";
         int desplazamiento = 3;
 
         String cadenaCodificada   = ""; 
@@ -114,9 +114,11 @@ public class Caesar {
         // 1. Texto original
 		System.out.println("Texto original:     " + cadena);
 		System.out.println();
+
 		// 2. Codificar
         cadenaCodificada = codificar(cadena, desplazamiento); 
         System.out.println("Texto codificado:   " + cadenaCodificada); 
+
         // 3. Decodificar
         cadenaDecodificada = decodificar(cadenaCodificada, desplazamiento); 
         System.out.println("Texto decodificado: " + cadenaDecodificada); 
