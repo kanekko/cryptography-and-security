@@ -1,8 +1,6 @@
-import java.math.*;
+public class Hill{
 
-public class Hill {
-
-    static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
+    static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 
     /**
      * 
@@ -142,24 +140,26 @@ public class Hill {
 
 
     /**
-     * Método principal
+     * Main method
+     * 
+     * @param args arguments.
      */
     public static void main(String[] args) {
-        String mensaje = "CONSUL";
-        String clave   = "FORTALEZA";
+        String message = "CONSUL";
+        String key     = "FORTALEZA";
 
-        // 1. Mensaje original
-		System.out.println("Mensaje original: " + mensaje);
-		System.out.println("Clave:            " + clave);
+        // 1. Plain text
+		System.out.println("Texto plano: " + message);
+		System.out.println("Clave:       " + key);
         System.out.println();  
 
-        // 2. Codificar
-        String mensajeCodificado = codificar(clave, mensaje);
-        System.out.println("Mensaje codificado:   " + mensajeCodificado);
+        // 2. Encryption
+        String cipherText = cipher(key, message);
+        System.out.println("Criptograma:   " + cipherText);
 
-        // 3. Decodificar
-        // String cadenaDecodificada = decodificar(mensaje, matriz, 2); 
-        // System.out.println("Texto decodificado: " + cadenaDecodificada); 
+        // 3. Decrypt
+        // String plainText = decipher(mensaje, matriz, 2);
+        // System.out.println("Texto decifrado: " + plainText); 
     }
 
 }
