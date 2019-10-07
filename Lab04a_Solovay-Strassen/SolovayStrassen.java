@@ -58,13 +58,19 @@ public class SolovayStrassen {
     }
 
     /** Function to calculate (a ^ b) % c **/
-    public long modPow(long a, long b, long c) {
-        long res = 1;
-        for (int i = 0; i < b; i++) {
-            res *= a;
-            res %= c;
+    public long modPow(long base, long exponent, long n) {
+        var solution = 1L;
+        base = base % n;
+
+        while (exponent > 0) {
+            if ((exponent & 1L) != 0)
+                solution = (base * solution) % n;
+
+            base = (base * base) % n;
+            exponent = exponent >> 1;
         }
-        return res % c;
+
+        return solution;
     }
 
     /** Main function **/
