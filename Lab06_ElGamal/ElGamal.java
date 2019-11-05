@@ -11,7 +11,7 @@ import java.util.Random;
  * - Theorem 1 : a in [Z/Z[p]] then a^(p-1) [p] = 1
  * - Theorem 2 : the order of an element split the order group
  */
-public final class ElGamal { // TODO extends Cryptosystem
+public final class ElGamal { 
 
     public static BigInteger TWO = new BigInteger("2");
 
