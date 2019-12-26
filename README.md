@@ -1,6 +1,6 @@
 # **Universidad Nacional Autónoma de México** #
-## **Facultad de Ciencias** ##
-### Curso de Criptografía y Seguridad ###
+### **Facultad de Ciencias** ###
+#### **Criptografía y Seguridad** ####
 <br>
 
 #### Objetivos generales ####
