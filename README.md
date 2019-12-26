@@ -1,9 +1,9 @@
-# Universidad Nacional Autónoma de México #
-## Facultad de Ciencias ##
+# **Universidad Nacional Autónoma de México** #
+## **Facultad de Ciencias** ##
 ### Curso de Criptografía y Seguridad ###
+<br>
 
-
-### Objetivos generales ###
+#### Objetivos generales ####
 
 Comprender los algoritmos de cifrado de datos más usuales, tanto simétricos como de llave pública.
 Comprender los pincipales protocolos de autenticación y de intercambio seguro de datos.
@@ -12,20 +12,15 @@ Conocer los ataques y mecanismos de criptoanálisis más usuales.
 Instrumentar medidas básicas de seguridad en sistemas de cómputo.
 
 
-### Contenido ###
+#### Contenido ####
 
 1. Conceptos de seguridad y criptografía, sistemas de cifrado clásicos, seguridad perfecta, redes de Feistel, cifrado de bloques, DES y AES.
 2. Elementos de teoría de números y campos finitos, criptosistemas de llave pública, algoritmos criptográficos de integridad de datos.
 3. Autentificación y firma digital, protocolos de seguridad en Internet, seguridad en redes, cortafuegos y políticas.
 
 
-### Contacto ###
+#### Contacto ####
 
-* Profesor: Manuel Díaz Díaz <<mandiaz@ciencias.unam.mx>>
-* Ayudante de teoría: Gerardo Rubén López Hernández <<dolphin@ciencias.unam.mx>>
-* Ayudante de laboratorio: J. Canek García Aguilar <<kaan.ek@ciencias.unam.mx>>
-
-
-### Sitio del curso ###
-
-https://sites.google.com/a/ciencias.unam.mx/mandiaz/home
+* Profesor: Manuel Díaz Díaz [<mandiaz@ciencias.unam.mx>]
+* Ayudante de teoría: Gerardo Rubén López Hernández [<dolphin@ciencias.unam.mx>]
+* Ayudante de laboratorio: J. Canek García Aguilar [<kaan.ek@ciencias.unam.mx>]
