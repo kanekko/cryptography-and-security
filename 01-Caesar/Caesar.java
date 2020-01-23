@@ -1,7 +1,7 @@
 /**
  * 
  */
-public class Caesar { 
+public class Caesar{ 
 
     // Member varialbes
     static String alphabetMinus = "abcdefghijklmnñopqrstuvwxyz";
@@ -104,22 +104,22 @@ public class Caesar {
      */
     public static void main(String[] args){
         String plainText = "Esta es una prueba";
-        int displacement = 3;
+        int displacement = 3; //key
 
-        String cryptogram    = "";
-        String decryptedText = "";
+        String cryptogram  = "";
+        String decodedText = "";
 
         // 1. Plain text
-		System.out.println("Texto plano:     " + plainText);
+		System.out.println("Texto plano: " + plainText);
 		System.out.println();
 
 		// 2. Encrypt
         cryptogram = encrypt(plainText, displacement);
-        System.out.println("Texto codificado:   " + cryptogram);
+        System.out.println("Criptograma: " + cryptogram);
 
         // 3. Decrypt
-        decryptedText = decrypt(cryptogram, displacement);
-        System.out.println("Texto decodificado: " + decryptedText);
+        decodedText = decrypt(cryptogram, displacement);
+        System.out.println("Texto decodificado: " + decodedText);
     }
 
-} 
+}
