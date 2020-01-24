@@ -22,7 +22,7 @@ public class Caesar{
             if ( alphabetMinus.contains( String.valueOf(plainText.charAt(i)) ) || // Filtering characters 
                  alphabetMayus.contains( String.valueOf(plainText.charAt(i)) ) ) {
                 
-                char cipherChar; // temp char
+                char symbol; // temp char
                 
                 if ( alphabetMinus.contains( String.valueOf(plainText.charAt(i)) ) ) { // Minus case
                     // index of a char (in the loop)
@@ -30,16 +30,16 @@ public class Caesar{
                     // E(x)=  x +  n          (mod N)
                     int Ex = (x + key) % alphabetMinus.length();
                     // getting index of cipher char
-                    cipherChar = alphabetMinus.charAt(Ex);
+                    symbol = alphabetMinus.charAt(Ex);
                 }else{ // Mayus case
                     int x  = alphabetMayus.indexOf(plainText.charAt(i));
                     // E(x)=  x +  n          (mod N)
                     int Ex = (x + key) % alphabetMayus.length();
                     // getting index of cipher char
-                    cipherChar = alphabetMayus.charAt(Ex);
+                    symbol = alphabetMayus.charAt(Ex);
                 }
 
-                cryptogram += cipherChar; // Union of all chars
+                cryptogram += symbol; // Union of all chars
 
             }else{
                 cryptogram += plainText.charAt(i); 
@@ -65,7 +65,7 @@ public class Caesar{
             if ( alphabetMinus.contains( String.valueOf(cryptogram.charAt(i)) ) || // Filtering characters 
                  alphabetMayus.contains( String.valueOf(cryptogram.charAt(i)) ) ) {
                 
-                char decipherChar; // temp char
+                char symbol; // temp char
 
                 if ( alphabetMinus.contains( String.valueOf(cryptogram.charAt(i)) ) ) { // Minus case
                     // index of a char (in the loop)
@@ -73,16 +73,16 @@ public class Caesar{
                     // D(x)=  x -  n         (mod N)
                     int Dx = (x - key) % alphabetMinus.length();
                     // getting index of decipher char
-                    decipherChar = alphabetMinus.charAt(Dx);
+                    symbol = alphabetMinus.charAt(Dx);
                 }else{ // Mayus case 
                     int x  = alphabetMayus.indexOf(cryptogram.charAt(i));
                     // D(x)=  x -  n         (mod N)
                     int Dx = (x - key) % alphabetMayus.length();
                     // getting index of decipher char
-                    decipherChar = alphabetMayus.charAt(Dx);
+                    symbol = alphabetMayus.charAt(Dx);
                 }
 
-                plainText += decipherChar; 
+                plainText += symbol; 
 
             }else{
                 plainText += cryptogram.charAt(i); 
@@ -99,9 +99,9 @@ public class Caesar{
      * @param args arguments
      */
     public static void main(String[] args){
-        // String plainText = "Esta es una prueba";
-        String plainText = "¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.";
-        int displacement = 3; //key
+        String plainText = "Esta es una prueba";
+        // String plainText = "¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.";
+        int displacement = 3; //key (maximun value is 27)
 
         String cryptogram  = "";
         String decodedText = "";
