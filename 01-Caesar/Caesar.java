@@ -1,8 +1,10 @@
 /**
- * Class to Implement Caesar cipher
+ * Class to implement Caesar cipher
  * 
- * @author Canek García 
+ * @author Canek García
  */
+import java.lang.Math;
+
 public class Caesar{ 
 
     // Member varialbes (Constants)
@@ -29,10 +31,8 @@ public class Caesar{
                 if ( ALPHABET_MINUS.contains( String.valueOf(plainText.charAt(i)) ) ) { // Minus case
                     // index of a char (in the loop)
                     int x  = ALPHABET_MINUS.indexOf(plainText.charAt(i));
-                    // System.out.print("x:"+x+",");
                     // E(x)=  x +  n          (mod N)
                     int Ex = (x + key) % ALPHABET_MINUS.length();
-                    // System.out.print("Ex:"+Ex+",");
                     // getting index of cipher char
                     symbol = ALPHABET_MINUS.charAt(Ex);
                 } else { // Mayus case
@@ -74,16 +74,16 @@ public class Caesar{
                 if ( ALPHABET_MINUS.contains( String.valueOf(cryptogram.charAt(i)) ) ) { // Minus case
                     // index of a char (in the loop)
                     int x  = ALPHABET_MINUS.indexOf(cryptogram.charAt(i));
-                    System.out.print("x:"+x + " ");
                     // D(x)=  x -  n         (mod N)
-                    int Dx = (x - key) % ALPHABET_MINUS.length();
-                    System.out.print("Dx:"+Dx+" ");
+                    // int Dx = ((x - key) % ALPHABET_MINUS.length());
+                    int Dx = Math.floorMod( (x-key) , ALPHABET_MINUS.length() );
                     // getting index of decipher char
                     symbol = ALPHABET_MINUS.charAt(Dx);
                 } else { // Mayus case 
                     int x  = ALPHABET_MAYUS.indexOf(cryptogram.charAt(i));
                     // D(x)=  x -  n         (mod N)
-                    int Dx = (x - key) % ALPHABET_MAYUS.length();
+                    // int Dx = (x - key) % ALPHABET_MAYUS.length();
+                    int Dx = Math.floorMod( (x-key) , ALPHABET_MAYUS.length() );
                     // getting index of decipher char
                     symbol = ALPHABET_MAYUS.charAt(Dx);
                 }
@@ -105,9 +105,9 @@ public class Caesar{
      * @param args arguments
      */
     public static void main(String[] args){
-        String plainText = "a z";
-        // String plainText = "Esta es una prueba";
+        // String plainText = "Per Aspera Ad Astra";
         // String plainText = "¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.";
+        String plainText = "a-z";
         int displacement = 5; //key (maximun value is 27)
 
         String cryptogram  = "";
