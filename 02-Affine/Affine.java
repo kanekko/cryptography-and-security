@@ -1,32 +1,35 @@
-//import java.math.*;
+/**
+ * 
+ */
+import java.math.*;
 
-public class Affine { 
+public class Affine {
 
-    static String alfabetoMinusculas = "abcdefghijklmnñopqrstuvwxyz"; 
-    static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
+    static String ALPHABET_MINUS = "abcdefghijklmnñopqrstuvwxyz";
+    static String ALPHABET_MAYUS = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 
     /**
      * E(x) = (ax + b) mod n
      */
-    private static String codificar(String cadena, int a, int b) {
-        String rtnCadena = ""; 
+    private static String codificar(String plainText, int a, int b) {
+        String cryptogram = ""; 
 
-        for (int i=0; i<cadena.length(); i++) {
+        for (int i=0; i<plainText.length(); i++) {
 
-            if( alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ){
-                int x  = alfabetoMayusculas.indexOf(cadena.charAt(i));
+            if( ALPHABET_MAYUS.contains(String.valueOf(plainText.charAt(i))) ){
+                int x  = ALPHABET_MAYUS.indexOf(plainText.charAt(i));
                 // E(x)= ( a x  + b)                 mod n
-                int Ex = ((a*x) + b) % alfabetoMayusculas.length();
-                char cipherChar = alfabetoMayusculas.charAt(Ex);
+                int Ex = ((a*x) + b) % ALPHABET_MAYUS.length();
+                char symbol = ALPHABET_MAYUS.charAt(Ex);
 
-                rtnCadena += cipherChar; 
+                cryptogram += symbol; 
             }else{
-                rtnCadena += cadena.charAt(i); 
+                cryptogram += plainText.charAt(i); 
             }
             
         }
 
-        return rtnCadena;
+        return cryptogram;
     }
 
     /**
@@ -66,23 +69,29 @@ public class Affine {
     }
 
     /**
-     * Método main
+     * Main method
+     * 
+     * @param args arguments
      */
     public static void main(String[] args) {
-        String cadena = "AFFINE CIPHER";
+        String plainText = "Per Aspera Ad Astra";
         int a = 5;
         int b = 15;
 
-        // 1. Texto original
-		System.out.println("Texto original:     " + cadena);
-		System.out.println();
-		// 2. Codificar
-        String cadenaCodificada = codificar(cadena, a, b); 
-        System.out.println("Texto codificado:   " + cadenaCodificada); 
-        // 3. Decodificar
-        String cadenaDecodificada = decodificar(cadenaCodificada, a, b); 
-        System.out.println("Texto decodificado: " + cadenaDecodificada); 
+        String cryptogram  = "";
+        String decodedText = "";
 
+        // 1. Pinting plain text
+		System.out.println("Texto plano:     " + plainText);
+		System.out.println();
+
+		// 2. Encypt
+        cryptogram = encrypt(plainText, a, b);
+        System.out.println("Criptograma:   " + cryptogram);
+
+        // 3. Decrypt
+        decodedText = decrypt(cryptogram, a, b);
+        System.out.println("Texto decodificado: " + decodedText);
     }
 
 }

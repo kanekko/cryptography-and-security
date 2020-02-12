@@ -1,5 +1,7 @@
 /**
  * Class to implement Caesar cipher
+ * in this implementation I used ALPHABET_MINUS and ALPHABET_MAYUS becase the 
+ * range of A-Z in Ascii and Utf-8 don't have Ñ char
  * 
  * @author Canek García
  */
@@ -105,9 +107,9 @@ public class Caesar{
      * @param args arguments
      */
     public static void main(String[] args){
-        // String plainText = "Per Aspera Ad Astra";
+        String plainText = "Per Aspera Ad Astra";
         // String plainText = "¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.";
-        String plainText = "a-z";
+        // String plainText = "a-z";
         int displacement = 5; //key (maximun value is 27)
 
         String cryptogram  = "";
@@ -124,6 +126,8 @@ public class Caesar{
         // 3. Decrypt
         decodedText = decrypt(cryptogram, displacement);
         System.out.println("Texto decodificado: " + decodedText);
+
+        // 4. Crypto-analisys
     }
 
 }
