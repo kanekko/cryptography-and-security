@@ -1,28 +1,42 @@
 /**
  * 
  */
-import java.math.*;
+// import java.math.*;
+import java.lang.Math;
 
 public class Affine {
 
+    // Member viables (Constants)
     static String ALPHABET_MINUS = "abcdefghijklmnñopqrstuvwxyz";
     static String ALPHABET_MAYUS = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 
     /**
      * E(x) = (ax + b) mod n
      */
-    private static String codificar(String plainText, int a, int b) {
+    private static String encrypt(String plainText, int a, int b) {
         String cryptogram = ""; 
 
         for (int i=0; i<plainText.length(); i++) {
 
-            if( ALPHABET_MAYUS.contains(String.valueOf(plainText.charAt(i))) ){
-                int x  = ALPHABET_MAYUS.indexOf(plainText.charAt(i));
-                // E(x)= ( a x  + b)                 mod n
-                int Ex = ((a*x) + b) % ALPHABET_MAYUS.length();
-                char symbol = ALPHABET_MAYUS.charAt(Ex);
+            if( ALPHABET_MINUS.contains( String.valueOf(plainText.charAt(i)) ) || 
+                ALPHABET_MAYUS.contains( String.valueOf(plainText.charAt(i)) ) ) {
+
+                char symbol;
+
+                if( ALPHABET_MINUS.contains(String.valueOf(plainText.charAt(i))) ){
+                    int x  = ALPHABET_MINUS.indexOf(plainText.charAt(i));
+                    // E(x)= ( a x  + b)           mod n
+                    int Ex = ((a*x) + b) % ALPHABET_MINUS.length();
+                    symbol = ALPHABET_MINUS.charAt(Ex);
+                } else {
+                    int x  = ALPHABET_MAYUS.indexOf(plainText.charAt(i));
+                    // E(x)= ( a x  + b)           mod n
+                    int Ex = ((a*x) + b) % ALPHABET_MAYUS.length();
+                    symbol = ALPHABET_MAYUS.charAt(Ex);
+                }
 
                 cryptogram += symbol; 
+
             }else{
                 cryptogram += plainText.charAt(i); 
             }
@@ -35,37 +49,50 @@ public class Affine {
     /**
      * D(x) = ( a^-1 (x-b) ) mod n
      */
-    private static String decodificar(String cadena, int a, int b){
-        String rtnCadena = ""; 
+    private static String decrypt(String cryptogram, int a, int b){
+        String plainText = ""; 
 
-        // 1. inverso multiplicativo
+        // 1. Getting mult inverse
         int a_inv = 0;
         int flag = 0;
-        for (int i = 0; i < 27; i++){
-            flag = (a * i) % 27;
+        for (int i=0; i<ALPHABET_MINUS.length(); i++){
+            flag = (a * i) % ALPHABET_MINUS.length();
             if (flag == 1)
-            {
                 a_inv = i;
-            }
         }
 
-        // 2. aplicando formula de decifrado
-        for (int i=0; i<cadena.length(); i++) {
+        // 2. Building plain text
+        for (int i=0; i<cryptogram.length(); i++) {
 
-            if( alfabetoMayusculas.contains( String.valueOf(cadena.charAt(i)) ) ){
-                int x  = alfabetoMayusculas.indexOf(cadena.charAt(i));
-                // int aInverse = Math.pow(a,-1);
-                int modN = alfabetoMayusculas.length();
-                //D(x) = (    a^-1  (x-  b) )  mod n
-				int Dx = ( ((a_inv)*(x-b+modN))%modN ); //% alfabetoMayusculas.length();
-                char cipherChar = alfabetoMayusculas.charAt(Dx);
-                rtnCadena += cipherChar; 
-            }else{
-                rtnCadena += cadena.charAt(i); 
+            if ( ALPHABET_MINUS.contains( String.valueOf(cryptogram.charAt(i)) ) || // Filtering characters 
+                 ALPHABET_MAYUS.contains( String.valueOf(cryptogram.charAt(i)) ) ) {
+
+                char symbol;
+
+                if( ALPHABET_MINUS.contains( String.valueOf(cryptogram.charAt(i)) ) ){
+                    int x  = ALPHABET_MINUS.indexOf(cryptogram.charAt(i));
+                    // int aInverse = Math.pow(a,-1);
+                    //int modN = ALPHABET_MINUS.length();
+                    
+                    //D(x) = (    a^-1  (x-  b) )  mod n
+                    // int Dx = ( ((a_inv)*(x-b+modN))%modN ); //% ALPHABET_MINUS.length();
+                    int Dx = Math.floorMod( (a_inv*(x-b)) , ALPHABET_MINUS.length() );
+
+                    symbol = ALPHABET_MINUS.charAt(Dx);
+                }else{
+                    int x  = ALPHABET_MAYUS.indexOf(cryptogram.charAt(i));
+                    int Dx = Math.floorMod( (a_inv*(x-b)) , ALPHABET_MAYUS.length() );
+                    symbol = ALPHABET_MAYUS.charAt(Dx);
+                }
+                
+                plainText += symbol; 
+            } else {
+                plainText += cryptogram.charAt(i);
             }
+
         }
 
-        return rtnCadena;
+        return plainText;
     }
 
     /**
@@ -73,7 +100,7 @@ public class Affine {
      * 
      * @param args arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
         String plainText = "Per Aspera Ad Astra";
         int a = 5;
         int b = 15;
@@ -81,7 +108,7 @@ public class Affine {
         String cryptogram  = "";
         String decodedText = "";
 
-        // 1. Pinting plain text
+        // 1. Plain text
 		System.out.println("Texto plano:     " + plainText);
 		System.out.println();
 
