@@ -126,8 +126,14 @@ public class Caesar{
         // 3. Decrypt
         decodedText = decrypt(cryptogram, displacement);
         System.out.println("Texto decodificado: " + decodedText);
+        System.out.println("");
 
-        // 4. Crypto-analisys
+        // 4. Cryptanalysis
+        System.out.println("Criptoanálisis:");
+        for(int i=0; i<ALPHABET_MINUS.length(); i++){
+            decodedText = decrypt("¡Mtpf! Pfx ppfajx ij pf hfxf yj jxujwfr jxhtrinifx gfñt pf qfhjyf.", i);
+            System.out.println(":~>" + decodedText);
+        }
     }
 
 }
