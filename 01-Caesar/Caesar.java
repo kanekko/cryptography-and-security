@@ -132,7 +132,7 @@ public class Caesar{
         System.out.println("Criptoanálisis:");
         for(int i=0; i<ALPHABET_MINUS.length(); i++){
             decodedText = decrypt("¡Mtpf! Pfx ppfajx ij pf hfxf yj jxujwfr jxhtrinifx gfñt pf qfhjyf.", i);
-            System.out.println(":~>" + decodedText);
+            System.out.println(i+":~>" + decodedText);
         }
     }
 
