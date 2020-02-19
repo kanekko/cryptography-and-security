@@ -101,7 +101,9 @@ public class Affine {
      * @param args arguments
      */
     public static void main(String[] args){
-        String plainText = "Per Aspera Ad Astra";
+        String plainText = "b";
+        // String plainText = "a-z";
+        // String plainText = "Per Aspera Ad Astra";
         int a = 5;
         int b = 15;
 
