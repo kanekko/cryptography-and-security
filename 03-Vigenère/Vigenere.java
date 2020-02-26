@@ -36,29 +36,32 @@ public class Vigenere {
     }
 
     /**
-     * D(x) = (Ci + Ki) mod L
+     * When: (Ci - Ki) >= 0
+     *     then: D(x) = (Ci - Ki) mod L
+     * when: (Ci - Ki) < 0
+     *     then: D(x) = (Ci - Ki + l) mod L 
      */
     private static String decrypt(String cryptogram, String key) {
         String plainText = "";
 
-        for (int i=0, j=0, l=cryptogram.length(); i<l; i++, j=j%l) {
+        for (int i=0, j=0, l=cryptogram.length(), m=key.length(); i<l; i++, j=i%m) {
 
             if( ALPHABET_MAYUS.contains( String.valueOf(cryptogram.charAt(i)) ) ){
                 int Ci = ALPHABET_MAYUS.indexOf(cryptogram.charAt(i));
                 int Ki = ALPHABET_MAYUS.indexOf(key.charAt(j));
                 int Dx = 0;
-                
+                char symbol;
+
                 if( (Ci-Ki)>=0 ){
                     // D(x)= ( Ci - Ki ) mod L
                     Dx = ( Ci - Ki ) % ALPHABET_MAYUS.length();
-                }else{
+                }else if( (Ci-Ki)<0 ){
                     // D(x)= ( Ci - Ki + L ) mod L
-                    Dx = ( Ci - Ki + l ) % ALPHABET_MAYUS.length();
+                    Dx = ( Ci - Ki + ALPHABET_MAYUS.length() ) % ALPHABET_MAYUS.length();
                 }
 
-                char cipherChar = ALPHABET_MAYUS.charAt(Dx);
-
-                plainText += cipherChar; 
+                symbol = ALPHABET_MAYUS.charAt(Dx);
+                plainText += symbol; 
             }else{
                 plainText += cryptogram.charAt(i); 
             }
@@ -84,13 +87,13 @@ public class Vigenere {
         String decodedText = "";
 
         // 1. Plain Text
-		System.out.println("Texto plano:     " + plainText);
-		System.out.println("Clave:           " + key);
+		System.out.println("Texto plano:        " + plainText);
+		System.out.println("Clave:              " + key);
 		System.out.println();        
 
 		// 2. Encrypt
         cryptogram = encrypt(plainText, key); 
-        System.out.println("Criptograma:   " + cryptogram); 
+        System.out.println("Criptograma:        " + cryptogram); 
 
         // 3. Decrypt
         decodedText = decrypt(cryptogram, key); 
