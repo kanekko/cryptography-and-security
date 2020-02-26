@@ -1,3 +1,4 @@
+
 public class Vigenere {
 
     // Member viables (Constants)
@@ -10,17 +11,20 @@ public class Vigenere {
     private static String encrypt(String plainText, String key) {
         String cryptogram = "";
 
-        for (int i=0, j=0, l=plainText.length(); i<l; i++, j=j%l) {
+        for (int i=0, j=0, l=plainText.length(), m=key.length(); i<l; i++, j=i%m) {
 
             if( ALPHABET_MAYUS.contains( String.valueOf(plainText.charAt(i)) ) ){
+                // System.out.println("i:"+i);
+                // System.out.println("j:"+j);
                 int Xi = ALPHABET_MAYUS.indexOf(plainText.charAt(i));
                 int Ki = ALPHABET_MAYUS.indexOf(key.charAt(j));
-                System.out.println("Xi:"+Xi);
-                System.out.println("Ki:"+Ki);
+                // System.out.println("Xi:"+Xi);
+                // System.out.println("Ki:"+Ki);
+                
                 // E(x)= ( Xi + Ki ) mod L
                 int Ex = ( Xi + Ki ) % ALPHABET_MAYUS.length();
-                char symbol = ALPHABET_MAYUS.charAt(Ex);
 
+                char symbol = ALPHABET_MAYUS.charAt(Ex);
                 cryptogram += symbol; 
             }else{
                 cryptogram += plainText.charAt(i); 
@@ -38,8 +42,8 @@ public class Vigenere {
         String plainText = "";
 
         for (int i=0, j=0, l=cryptogram.length(); i<l; i++, j=j%l) {
-            if( ALPHABET_MAYUS.contains( String.valueOf(cryptogram.charAt(i)) ) ){
 
+            if( ALPHABET_MAYUS.contains( String.valueOf(cryptogram.charAt(i)) ) ){
                 int Ci = ALPHABET_MAYUS.indexOf(cryptogram.charAt(i));
                 int Ki = ALPHABET_MAYUS.indexOf(key.charAt(j));
                 int Dx = 0;
@@ -55,11 +59,10 @@ public class Vigenere {
                 char cipherChar = ALPHABET_MAYUS.charAt(Dx);
 
                 plainText += cipherChar; 
-
-
             }else{
                 plainText += cryptogram.charAt(i); 
             }
+
         }
 
         return plainText;
@@ -72,8 +75,6 @@ public class Vigenere {
      * @param args argumentos
      */
     public static void main(String[] args) {
-        // String mensaje = "PER ASPERA AD ASTRA";
-        // String llave   = "VIGENERE";
         // String plainText = "ATTACKATDAWN";
         // String key       = "LEMON";
         String plainText = "PARISVAUTBIENUNEMESSE";
@@ -92,8 +93,8 @@ public class Vigenere {
         System.out.println("Criptograma:   " + cryptogram); 
 
         // 3. Decrypt
-        // decodedText = decrypt(cryptogram, key); 
-        // System.out.println("Texto decodificado: " + decodedText); 
+        decodedText = decrypt(cryptogram, key); 
+        System.out.println("Texto decodificado: " + decodedText); 
     }
 
 }
