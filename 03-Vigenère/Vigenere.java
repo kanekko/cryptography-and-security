@@ -14,12 +14,8 @@ public class Vigenere {
         for (int i=0, j=0, l=plainText.length(), m=key.length(); i<l; i++, j=i%m) {
 
             if( ALPHABET_MAYUS.contains( String.valueOf(plainText.charAt(i)) ) ){
-                // System.out.println("i:"+i);
-                // System.out.println("j:"+j);
                 int Xi = ALPHABET_MAYUS.indexOf(plainText.charAt(i));
                 int Ki = ALPHABET_MAYUS.indexOf(key.charAt(j));
-                // System.out.println("Xi:"+Xi);
-                // System.out.println("Ki:"+Ki);
                 
                 // E(x)= ( Xi + Ki ) mod L
                 int Ex = ( Xi + Ki ) % ALPHABET_MAYUS.length();
