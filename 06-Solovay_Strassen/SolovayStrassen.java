@@ -3,7 +3,13 @@ import java.util.Random;
 
 public class SolovayStrassen {
 
-    /** Function to calculate jacobi (a/b) **/
+    /**
+     * Function to calculate jacobi (a/b)
+     * 
+     * @param  a [description]
+     * @param  b [description]
+     * @return   [description]
+     */
     public long Jacobi(long a, long b) {
         if (b <= 0 || b % 2 == 0)
             return 0;
@@ -33,7 +39,13 @@ public class SolovayStrassen {
         return 0;
     }
 
-    /** Function to check if prime or not **/
+    /**
+     * Function to check if prime or not
+     * 
+     * @param  n         [description]
+     * @param  iteration [description]
+     * @return           [description]
+     */
     public boolean isPrime(long n, int iteration) {
         /** base case **/
         if (n == 0 || n == 1)
@@ -57,7 +69,14 @@ public class SolovayStrassen {
         return true;
     }
 
-    /** Function to calculate (a ^ b) % c **/
+    /**
+     * Function to calculate (a ^ b) % c
+     * 
+     * @param  a [description]
+     * @param  b [description]
+     * @param  c [description]
+     * @return   [description]
+     */
     public long modPow(long a, long b, long c) {
         long res = 1;
         for (int i = 0; i < b; i++) {
@@ -67,7 +86,11 @@ public class SolovayStrassen {
         return res % c;
     }
 
-    /** Main function **/
+    /**
+     * Main function
+     * 
+     * @param args [description]
+     */
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Prueba de primalidad de SolovayStrassen\n");
