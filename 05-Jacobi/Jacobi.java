@@ -1,52 +1,61 @@
 /**
- * 
+ * Class to implement Jacobi symbol
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Jacobi_symbol">Jacobi symbol</a>
  */
 public class Jacobi{
-
+    
     /**
-     * Function to calculate jacobi (a/b) *
-     * @param  a [description]
-     * @param  b [description]
-     * @return   [description]
+     * Function to calculate Jacobi symbol (a/n)
+     * @param  a a integer >= 3
+     * @param  n any positive odd integer
+     * @return   Jacobi symbol
      */
-    public static long calculateJacobi(long a, long b) {
-        if (b <= 0 || b % 2 == 0)
+    public static long JacobiSymbol(long a, long n) {
+
+        if (n<=0 || n%2==0)
             return 0;
-        long j = 1L;
+        
+        long j = 1L; // temporal
+
         if (a < 0) {
             a = -a;
-            if (b % 4 == 3)
+            if (n % 4 == 3)
                 j = -j;
         }
+
         while (a != 0) {
             while (a % 2 == 0) {
                 a /= 2;
-                if (b % 8 == 3 || b % 8 == 5)
+                if (n % 8 == 3 || n % 8 == 5)
                     j = -j;
             }
 
-            long temp = a;
-            a = b;
-            b = temp;
+            long temp = a; // other termporal
+            a = n;
+            n = temp;
 
-            if (a % 4 == 3 && b % 4 == 3)
+            if (a%4==3 && n%4==3)
                 j = -j;
-            a %= b;
+            a %= n;
         }
-        if (b == 1)
+
+        if (n == 1)
             return j;
+
         return 0;
     }
 
     /**
      * Main method 
+     * 
      * @param args arguments
      */
     public static void main(String[] args) {
-        long p = 219;
-        long q = 383;
+        long a = 1001; // 'a' a integer 
+        long n = 9907; // 'n' any positive odd integer
 
-        long jacobi = calculateJacobi(p,q);
+        long jacobi = JacobiSymbol(a,n);
 
         System.out.println(jacobi);
     }

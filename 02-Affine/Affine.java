@@ -1,5 +1,7 @@
 /**
- * 
+ * Class to implement Caesar cipher
+ *
+ * @author Canek García
  */
 // import java.math.*;
 import java.lang.Math;

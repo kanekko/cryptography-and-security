@@ -1,4 +1,8 @@
-
+/**
+ * Class to implement Viginere cipher
+ * 
+ * @author Canek García
+ */
 public class Vigenere {
 
     // Member viables (Constants)
@@ -71,7 +75,7 @@ public class Vigenere {
     /**
      * Main method
      *
-     * @param args argumentos
+     * @param args arguments
      */
     public static void main(String[] args) {
         // String plainText = "ATTACKATDAWN";
