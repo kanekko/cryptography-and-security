@@ -45,8 +45,6 @@ public class RSA {
 		this.N = N;
 	}
  
-
- 
 	private static String bytesToString(byte[] encrypted) {
 		String test = "";
 		for (byte b : encrypted) {
