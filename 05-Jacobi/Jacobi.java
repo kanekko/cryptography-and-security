@@ -7,6 +7,7 @@ public class Jacobi{
     
     /**
      * Function to calculate Jacobi symbol (a/n)
+     * 
      * @param  a a integer >= 3
      * @param  n any positive odd integer
      * @return   Jacobi symbol
@@ -52,8 +53,8 @@ public class Jacobi{
      * @param args arguments
      */
     public static void main(String[] args) {
-        long a = 1001; // 'a' a integer 
-        long n = 9907; // 'n' any positive odd integer
+        long a = 2; // 'a' a integer 
+        long n = 5; // 'n' any positive odd integer
 
         long jacobi = JacobiSymbol(a,n);
 
