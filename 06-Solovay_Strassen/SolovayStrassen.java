@@ -6,9 +6,9 @@ public class SolovayStrassen {
     /**
      * Function to calculate jacobi (a/b)
      * 
-     * @param  a [description]
-     * @param  b [description]
-     * @return   [description]
+     * @param  a a integer >= 3
+     * @param  b any positive odd integer
+     * @return   Jacobi symbol
      */
     public long Jacobi(long a, long b) {
         if (b <= 0 || b % 2 == 0)
