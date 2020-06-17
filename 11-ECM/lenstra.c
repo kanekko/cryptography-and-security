@@ -44,8 +44,7 @@ typedef struct punto
  * recordemos que r[1] nos sirve como el inverso multiplicativo modulo x si x,y son primos relativos
  * esta funcion es usada por la funcion inverso_modular();
  */
-void
-euclides_extendido (_long x, _long y, _long * rv)
+void euclides_extendido (_long x, _long y, _long * rv)
 {
   _long t, respaldoy = y;
   rv[0] = x;
@@ -82,31 +81,21 @@ euclides_extendido (_long x, _long y, _long * rv)
     }
 }
 
-
-
-
-
-
 /* 
  * Calcula el inverso multiplicativo modulo NUM usando el algoritmo de euclides
  * esto es usado cuando en la curva eliptica calculamos lambda = r/s = r*inverso_modular(s) 
  */
-
-_long
-inverso_modular (_long x, _long y)
+_long inverso_modular (_long x, _long y)
 {
   _long r[2];
   euclides_extendido (x, y, (_long *)&r);
   return r[1];
 }
 
-
 /*
  * Calcula el maximo comun divisor de x,y
  */
-
-_long
-mcd (_long x, _long y)
+_long mcd (_long x, _long y)
 {
   _long g;
   if (x < 0)
@@ -130,12 +119,9 @@ mcd (_long x, _long y)
  * ya que x%y en C si x es negativo regresa el mismo x y eso no nos sirve, queremos la clase
  * de equivalencia cuyo representante sea positivo
  */
-_long
-modn (_long x)
+_long modn (_long x)
 {
-
   return (x + NUM) % NUM;
-
 }
 
 /*
@@ -146,9 +132,7 @@ modn (_long x)
  * c) si p = -q
  *
  */
-
-punto_t
-suma_puntos_diferentes (punto_t p, punto_t q)
+punto_t suma_puntos_diferentes (punto_t p, punto_t q)
 {
   punto_t r;
 
@@ -176,16 +160,13 @@ suma_puntos_diferentes (punto_t p, punto_t q)
   r.x = modn (modn (r.l * r.l) + modn ((-1 * p.x)) + modn ((-1 * q.x)));
   r.y = modn ((r.l * (p.x - r.x)) - p.y);
   return r;
-
 }
 
 /*
  * Esta funcion calcula R = P+P = 2P 
  * en la curva y^2 = x^3 + ax + B
  */
-
-punto_t
-suma_puntos_iguales (punto_t p)
+punto_t suma_puntos_iguales (punto_t p)
 {
   punto_t r;
   r.l = modn (((3 * (p.x * p.x)) + a) * inverso_modular (p.y * 2, NUM));
@@ -203,16 +184,13 @@ suma_puntos_iguales (punto_t p)
  * Esta funcion deduce si P = Q entonces hay que usar la primer funcion , o si P != Q la segunda funcion
  *
  */
-
-punto_t
-suma_puntos_en_general (punto_t p, punto_t q)
+punto_t suma_puntos_en_general (punto_t p, punto_t q)
 {
   if (son_iguales (p, q))
     {
       return suma_puntos_iguales (p);
     }
   return suma_puntos_diferentes (p, q);
-
 }
 
 /*
@@ -224,8 +202,7 @@ suma_puntos_en_general (punto_t p, punto_t q)
  * }
  *
  */
-int
-son_iguales (punto_t p, punto_t q)
+int son_iguales (punto_t p, punto_t q)
 {
   if ((p.x == q.x) & (p.y == q.y))
     {
@@ -240,9 +217,7 @@ son_iguales (punto_t p, punto_t q)
  * usando iteraciones de las funciones anteriores (hay maneras mas eficientes cuando la k es muy grande
  * pero en este caso no es necesario)
  */
-
-punto_t
-mult_escalar (int k, punto_t p)
+punto_t mult_escalar (int k, punto_t p)
 {
   punto_t r, t;
   r.x = 0;
@@ -257,9 +232,7 @@ mult_escalar (int k, punto_t p)
 }
 
 /* Funcion principal */
-
-int
-main (int argc, char **argv)
+int main (int argc, char **argv)
 {
 
   punto_t inicial;		/*  (1,1) Es el punto de y^2 = x^3 + ax + B */
