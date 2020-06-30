@@ -259,7 +259,7 @@ int main (int argc, char **argv)
     /* Sumamos i veces (1,1) */
     t = mult_escalar (i, inicial);
 
-    printf("t = %i*(1,1)= (%lli,%lli), y^2 = x^3 + %lli x - %lli mod %lli\n", i, t.x, t.y, a, a, NUM);
+    printf("t = %i*(1,1) = (%lli,%lli), y^2 = x^3 + %lli x - %lli mod %lli\n", i, t.x, t.y, a, a, NUM);
 
     /* Calculamos el maximo comun divisor del denominador de la pendiente con NUM */
     mcd1 = mcd (t.den, NUM);
@@ -272,7 +272,7 @@ int main (int argc, char **argv)
   	  exit(1);
   	}
   }
-  
+
   /* Si termina la iteracion hay que cambiar de a en y^2 = x^3 + ax + B o intentar otra cota mas grande */
   printf("NO ENCONTRE NINGUN FACTOR DE %lli con a=%lli y k=%d  intenta con una \"k\" mas grande u otro valor de a con y^2 = x^2 + ax - a\n", NUM,a,k);
 
