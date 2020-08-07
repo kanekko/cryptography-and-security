@@ -145,8 +145,11 @@ public class Hill{
      * @param args arguments.
      */
     public static void main(String[] args) {
-        String plainText = "CONSUL";
-        String key       = "FORTALEZA";
+        // String plainText = "CONSUL";
+        // String key       = "FORTALEZA";
+
+        //String plainText = "HELP";
+        //String key       = "DDCF";
 
         // 1. Plain text
 		System.out.println("Texto plano: " + plainText);
