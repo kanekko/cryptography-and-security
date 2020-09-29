@@ -77,7 +77,7 @@ public class Caesar{
                     // index of a char (in the loop)
                     int x  = ALPHABET_MINUS.indexOf(cryptogram.charAt(i));
                     // D(x)=  x -  n         (mod N)
-                    // int Dx = ((x - key) % ALPHABET_MINUS.length());
+                    //int Dx = ((x - key) % ALPHABET_MINUS.length());
                     int Dx = Math.floorMod( (x-key) , ALPHABET_MINUS.length() );
                     // getting index of decipher char
                     symbol = ALPHABET_MINUS.charAt(Dx);
@@ -107,9 +107,9 @@ public class Caesar{
      * @param args arguments
      */
     public static void main(String[] args){
-        String plainText = "Per Aspera Ad Astra";
-        // String plainText = "¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.";
         // String plainText = "a-z";
+        // String plainText = "Per Aspera Ad Astra";
+        String plainText = "¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.";
         int displacement = 5; //key (maximun value is 27)
 
         String cryptogram  = "";
@@ -131,7 +131,7 @@ public class Caesar{
         // 4. Cryptanalysis
         System.out.println("Criptoanálisis:");
         for(int i=0; i<ALPHABET_MINUS.length(); i++){
-            decodedText = decrypt("¡Mtpf! Pfx ppfajx ij pf hfxf yj jxujwfr jxhtrinifx gfñt pf qfhjyf.", i);
+			decodedText = decrypt("¡Mtpf! Pfx ppfajx ij pf hfxf yj jxujwfr jxhtrinifx gfñt pf qfhjyf.", i);
             System.out.println(i+":~>" + decodedText);
         }
     }
