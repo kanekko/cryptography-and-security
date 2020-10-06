@@ -1,5 +1,5 @@
 /**
- * Class to implement Caesar cipher
+ * Class to implement Affine cipher
  *
  * @author Canek García
  */
@@ -105,7 +105,8 @@ public class Affine {
     public static void main(String[] args){
         // String plainText = "b";
         // String plainText = "a-z";
-        String plainText = "Per Aspera Ad Astra";
+        String plainText = "HOLA";
+        // String plainText = "¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.";
         int a = 5;
         int b = 15;
 
