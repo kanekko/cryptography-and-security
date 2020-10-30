@@ -1,7 +1,9 @@
 /**
- * Class to implement Viginere cipher
+ * Class to implement Vigenere cipher
  * 
- * @author Canek García
+ * @author  Canek García
+ * @version 1.0
+ * @since   2019-08-01
  */
 public class Vigenere {
 
@@ -78,10 +80,12 @@ public class Vigenere {
      * @param args arguments
      */
     public static void main(String[] args) {
-        // String plainText = "ATTACKATDAWN";
-        // String key       = "LEMON";
         String plainText = "PARISVAUTBIENUNEMESSE";
         String key       = "LOUP";
+        // String plainText = "ATTACKATDAWN";
+        // String key       = "LEMON";
+        // String plainText = "HOLABOB";
+        // String key       = "ADIOS";
 
         String cryptogram  = "";
         String decodedText = "";
@@ -97,7 +101,7 @@ public class Vigenere {
 
         // 3. Decrypt
         decodedText = decrypt(cryptogram, key); 
-        System.out.println("Texto decodificado: " + decodedText); 
+        System.out.println("Texto descifrado: " + decodedText); 
     }
 
 }
