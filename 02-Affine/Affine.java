@@ -1,11 +1,13 @@
-/**
- * Class to implement Affine cipher
- *
- * @author Canek García
- */
 // import java.math.*;
 import java.lang.Math;
 
+/**
+ * Class to implement Affine cipher
+ *
+ * @author  Canek García
+ * @version 1.0
+ * @since   2019-08-01
+ */
 public class Affine {
 
     // Member viables (Constants)
@@ -14,6 +16,11 @@ public class Affine {
 
     /**
      * E(x) = (ax + b) mod n
+     *
+     * @param plainText plain text
+     * @param a         constant
+     * @param b         constant 
+     * @return          string object with ciphertext (cryptogram)
      */
     private static String encrypt(String plainText, int a, int b) {
         String cryptogram = ""; 
@@ -114,16 +121,16 @@ public class Affine {
         String decodedText = "";
 
         // 1. Plain text
-		System.out.println("Texto plano:     " + plainText);
+		System.out.println("Texto plano:      " + plainText);
 		System.out.println();
 
 		// 2. Encypt
         cryptogram = encrypt(plainText, a, b);
-        System.out.println("Criptograma:   " + cryptogram);
+        System.out.println("Criptograma:      " + cryptogram);
 
         // 3. Decrypt
         decodedText = decrypt(cryptogram, a, b);
-        System.out.println("Texto decodificado: " + decodedText);
+        System.out.println("Texto descifrado: " + decodedText);
     }
 
 }
