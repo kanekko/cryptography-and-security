@@ -1,32 +1,51 @@
+/**
+ * Class to implement Hill cipher 
+ *
+ * @author  Canek García
+ * @version 1.0
+ * @since   2019-08-01
+ */
 public class Hill{
 
-    static String alfabetoMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    /**
+     * I use this var because ASCII and UTF-8 don't have form A to Z with Ñ char inside of this range
+     */
+    static String ALPHABET_MAYUS = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 
     /**
+     * Algorithm to encrypt
      * 
+     * @param  plainText Plain text
+     * @param  key       Key of cipher
+     * @return           String ciphered with Hill cryptosystem
      */
-    private static String cipher(String mensaje, String clave) {
+    private static String encrypt(String plainText, String key) {
         String cryptogram = "";
 
-        //1. Construcción y verificación de la Matriz correspondiente a la clave
-        int[][] matrizClave = getMatrizClave(clave);
+        // 0. Calculate determinant and check if is invertible
+        
+        
 
-        //2. Construcción de n-gramas del mensaje
-        int[][] matrizMensaje = getMatrizMensaje(mensaje, matrizClave.length);
 
-        //3. Multiplicamos Matrices 
-        int [][] claveXmensaje = multiplicaMatrices(matrizClave, matrizMensaje);
+        // 1. Construcción y verificación de la Matriz correspondiente a la clave
+        // int[][] matrizClave = getMatrizClave(clave);
 
-        //4. Recuperamos mensaje ofuscado
-        cryptogram = getMessageCipher(claveXmensaje);
+        // 2. Construcción de n-gramas del mensaje
+        // int[][] matrizMensaje = getMatrizMensaje(mensaje, matrizClave.length);
+
+        // 3. Multiplicamos Matrices 
+        // int [][] claveXmensaje = multiplicaMatrices(matrizClave, matrizMensaje);
+
+        // 4. Recuperamos mensaje ofuscado
+        // cryptogram = getMessageCipher(claveXmensaje);
 
         return cryptogram;
     }
 
     /**
-     * 
-     * @param clave
-     * @return
+     * [getMatrizClave description]
+     * @param  clave [description]
+     * @return       [description]
      */
     private static int[][] getMatrizClave(String clave){
         int[][] rtnClave = new int[0][0];
@@ -39,7 +58,7 @@ public class Hill{
             int flagClave = 0;
             for(int i=0; i<raizInt; i++){
                 for(int j=0; j<raizInt; j++){
-                    rtnClave[i][j] = alfabetoMayusculas.indexOf(clave.charAt(flagClave));
+                    rtnClave[i][j] = ALPHABET_MAYUS.indexOf(clave.charAt(flagClave));
                     flagClave++;
                 }
             }
@@ -76,7 +95,7 @@ public class Hill{
             int flagPositionMesaje = 0;
             for(int i=0; i<rows; i++){ // i-rows
                 for(int j=0; j<longitudeMatrizClave; j++){ // j-columns
-                    rtnMensaje[i][j] = alfabetoMayusculas.indexOf(mensaje.charAt(flagPositionMesaje));
+                    rtnMensaje[i][j] = ALPHABET_MAYUS.indexOf(mensaje.charAt(flagPositionMesaje));
                     flagPositionMesaje++;
                 }
             }
@@ -103,7 +122,7 @@ public class Hill{
                 for(int j=0; j<matrizMensaje[0].length; j++){
                     a = a + (matrizClave[i][j]*matrizMensaje[h][j]);
                 }
-                rtnMultiplicacion[h][i] = a % alfabetoMayusculas.length();
+                rtnMultiplicacion[h][i] = a % ALPHABET_MAYUS.length();
             }
         }
 
@@ -120,45 +139,44 @@ public class Hill{
 
         for(int i=0; i<matrizChiper.length; i++){
             for(int j=0; j<matrizChiper[i].length; j++){
-                rtnMensaje = rtnMensaje + ( alfabetoMayusculas.charAt(matrizChiper[i][j]) + "");
+                rtnMensaje = rtnMensaje + ( ALPHABET_MAYUS.charAt(matrizChiper[i][j]) + "");
             }
         }
 
         return rtnMensaje;
     }
-    
 
     /**
-     * 
+     * TODO
      */
-    private static String decodificar(String cadena, int[][] llave, int dimension) {
+    private static String decrypt(String cadena, int[][] llave, int dimension) {
         String rtnCadena = "";
 
 
         return rtnCadena;
     }
 
-
     /**
      * Main method
      * 
-     * @param args arguments.
+     * @param args arguments
      */
     public static void main(String[] args) {
-        // String plainText = "CONSUL";
-        // String key       = "FORTALEZA";
-
-        //String plainText = "HELP";
-        //String key       = "DDCF";
+        // String plainText = "ACT";
+        // String key       = "GYBNQKURP";
+        // String plainText = "POH";
+        // String key       = "GYBNQKURP";
+        String plainText = "CONSUL";
+        String key       = "FORTALEZA";
 
         // 1. Plain text
 		System.out.println("Texto plano: " + plainText);
 		System.out.println("Clave:       " + key);
         System.out.println();  
 
-        // 2. Encryption
-        String cryptogram = cipher(plainText, key);
-        System.out.println("Criptograma:   " + cryptogram);
+        // 2. Encrypt
+        String cryptogram = encrypt(plainText, key);
+        System.out.println("Criptograma: " + cryptogram);
 
         // 3. Decrypt
         // String decodedText = decipher(mensaje, matriz, 2);
