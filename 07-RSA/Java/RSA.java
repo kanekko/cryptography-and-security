@@ -9,7 +9,8 @@ public class RSA {
 	private BigInteger phi;
 	private BigInteger e;
 	private BigInteger d;
-	private int bitlength = 1024;
+	private int bitlength = 16;
+	// private int bitlength = 1024;
 	//private int blocksize = 256;
  
 	//blocksize in byte
@@ -19,17 +20,22 @@ public class RSA {
 		// 1. Dos números primos aleatorios.
 		r = new Random();
 		p = BigInteger.probablePrime(bitlength, r);
+		System.out.println("p: " + p);
 		q = BigInteger.probablePrime(bitlength, r);
+		System.out.println("q: " + q);
 
 		// 2. Se calcula n=p*q
 		N = p.multiply(q);
+		System.out.println("N: " + N);
 		
 		// 3. Se calcula la función de Euler
 		// Phi(n) = (p-1)(q-1)
 		phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+		System.out.println("phi: " + phi);
 
 		// 4. Entero positivo 'e' menor que phi y que sea coprimo con phi
 		e = BigInteger.probablePrime(bitlength/2, r);
+		System.out.println("e: " + e);
 		
 		while ( phi.gcd(e).compareTo(BigInteger.ONE)>0 && e.compareTo(phi)<0 ) {
 			e.add(BigInteger.ONE);
@@ -37,6 +43,7 @@ public class RSA {
 
 		// 5. Se determina 'd' que satisfaga la congruencia e*d=1(mod Phi(n))
 		d = e.modInverse(phi);
+		System.out.println("d: " + d);
 	}
  
 	public RSA(BigInteger e, BigInteger d, BigInteger N) {
@@ -76,7 +83,7 @@ public class RSA {
  
 		RSA rsa = new RSA();
 
-		String teststring = "esta es una prueba";
+		String teststring = "hola";
 		System.out.println("Encrypting String: " + teststring);
 		System.out.println("String in Bytes: " + bytesToString( teststring.getBytes() )  );
 
