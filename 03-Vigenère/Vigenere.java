@@ -14,7 +14,7 @@ public class Vigenere {
     /**
      * E(x) = (Xi + Ki) mod L
      */
-    private static String encrypt(String plainText, String key) {
+    private static String encrypt(String plainText, String key){
         String cryptogram = "";
 
         for (int i=0, j=0, l=plainText.length(), m=key.length(); i<l; i++, j=i%m) {
@@ -43,7 +43,7 @@ public class Vigenere {
      * when: (Ci - Ki) < 0
      *     then: D(x) = (Ci - Ki + l) mod L 
      */
-    private static String decrypt(String cryptogram, String key) {
+    private static String decrypt(String cryptogram, String key){
         String plainText = "";
 
         for (int i=0, j=0, l=cryptogram.length(), m=key.length(); i<l; i++, j=i%m) {
@@ -101,7 +101,7 @@ public class Vigenere {
 
         // 3. Decrypt
         decodedText = decrypt(cryptogram, key); 
-        System.out.println("Texto descifrado: " + decodedText); 
+        System.out.println("Texto descifrado:   " + decodedText); 
     }
 
 }

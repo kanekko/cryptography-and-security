@@ -1,4 +1,3 @@
-// import java.math.*;
 import java.lang.Math;
 
 /**
